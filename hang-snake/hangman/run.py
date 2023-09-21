@@ -23,16 +23,22 @@ elif level == '3':
 else:
     print('Неправильно выбран уровень сложности')
     raise SystemExit
+
 otvet = ['_'] * (len(slovo) - 1)
 print(''.join(otvet))
 print('\n')
 p = 1
 neprav = []
 prav = []
+
 while p <= 6:
     buk = input()
     if buk not in alphabet:
         print('Введена нестрочная буква русского алфавита, '
+              'попробуйте еще раз')
+        continue
+    if buk in neprav:
+        print('Вы уже вводили данную букву, '
               'попробуйте еще раз')
         continue
     if buk not in slovo:
@@ -40,6 +46,7 @@ while p <= 6:
         neprav.append(buk)
     if buk in slovo:
         prav.append(buk)
+
     if p == 2:
         print('_______/|\_\n')
     if p == 3:
@@ -89,4 +96,7 @@ while p <= 6:
         print('Осталось попыток: ', 7 - p)
     else:
         print('Загаданно слово: ', slovo)
+        raise SystemExit
+    if '_' not in otvet:
+        raise SystemExit
     print('\n')
